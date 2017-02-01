@@ -1,8 +1,9 @@
 describe("Airport", function(){
 
   beforeEach(function() {
-    airport = new Airport();
-    plane = new Plane();
+    plane = jasmine.createSpy('plane');
+    weather = jasmine.createSpyObj('weather', ['stormy']);
+    airport = new Airport(weather);
   });
 
   it('has no planes by default', function(){
@@ -36,11 +37,22 @@ describe("Airport", function(){
     });
   });
 
+  describe("Under stormy conditions", function() {
+    beforeEach(function() {
+      // debugger;
+          // spyOn(Math, 'random').and.returnValue(0.7);
+      weather.stormy.and.returnValue(true);
+    });
+    it('throws an error when trying to land plane', function(){
+      expect( function(){airport.clearLanding(plane)}).toThrow('Cannot take off in stormy weather')
+    });
+  });
+
   it('throw an error if trying to land in a full airport', function(){
     for(var i=0; i < airport.capacity(); i++){
       airport.clearLanding(plane)
     };
-    expect( function(){plane.land(airport)}).toThrow('The airport is full')
+    expect( function(){airport.clearLanding(plane)}).toThrow('The airport is full')
   });
 
 });

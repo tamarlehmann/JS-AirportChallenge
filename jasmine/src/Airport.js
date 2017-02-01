@@ -1,7 +1,9 @@
-function Airport() {
+function Airport(weather) {
   this._hangar = [];
   this._capacity = 20;
+  // this.weather = typeof weather !== 'undefined' ? weather : new Weather();
 };
+weather = new Weather;
 
 Airport.prototype.planes = function(){
   return this._hangar;
@@ -22,3 +24,5 @@ Airport.prototype.clearTakeOff = function(plane) {
   this._hangar.pop(plane)
   return 'The plane has taken off'
 };
+
+// weather.stormy 
