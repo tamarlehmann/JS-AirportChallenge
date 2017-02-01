@@ -44,7 +44,7 @@ describe("Airport", function(){
       weather.stormy.and.returnValue(true);
     });
     it('throws an error when trying to land plane', function(){
-      expect( function(){airport.clearLanding(plane)}).toThrow('Cannot take off in stormy weather')
+      expect( function(){airport.clearLanding(plane)}).toThrow('Cannot land in stormy weather')
     });
   });
 
