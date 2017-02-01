@@ -3,7 +3,7 @@ describe("Planes", function() {
   beforeEach(function() {
     plane1 = new Plane(1);
     plane2 = new Plane(2);
-    airport = 'airport'
+    airport = new Airport();
   });
 
   it('can land at an airport', function() {
@@ -20,10 +20,5 @@ describe("Planes", function() {
     plane1.land(airport);
     expect(function(){ plane1.land(airport)} ).toThrow('The plane has already landed')
   });
-
-  // it('raises an error if already flying', function() {
-  //   plane2.takeOff(airport)
-  //   expect(function(){ plane2.takeOff(airport)} ).toThrow('The plane is already flying')
-  // });
 
 });
