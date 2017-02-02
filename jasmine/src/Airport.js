@@ -13,9 +13,13 @@ Airport.prototype.capacity = function(){
   return this._capacity;
 };
 
+Airport.prototype.setCapacity = function(n){
+  this._capacity = n
+};
+
 Airport.prototype.clearLanding = function(plane) {
   if (this._capacity == this._hangar.length) {throw('The airport is full');}
-  else if (weather.stormy) {
+  else if (weather.stormy()) {
     throw('Cannot land in stormy weather')
   } else {
   this._hangar.push(plane)
@@ -23,7 +27,8 @@ Airport.prototype.clearLanding = function(plane) {
 };
 
 Airport.prototype.clearTakeOff = function(plane) {
-  this._hangar.pop(plane)
+  if (weather.stormy()) { throw('Cannot take off in stormy weather');}
+  this._hangar.pop(plane);
   return 'The plane has taken off'
 };
 

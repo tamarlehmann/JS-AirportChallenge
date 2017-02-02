@@ -4,6 +4,8 @@ describe("Planes", function() {
     plane1 = new Plane(1);
     plane2 = new Plane(2);
     airport = new Airport();
+    weather = jasmine.createSpyObj('weather', ['stormy']);
+    weather.stormy.and.returnValue(false);
   });
 
   it('can land at an airport', function() {
